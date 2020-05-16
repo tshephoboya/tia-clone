@@ -1,0 +1,29 @@
+{% load blogtags %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %} {% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <div id="navbar">
+            <h2><a href="{% url 'blogapp:article_list' %}">This Is Anfield</a></h2>
+            <nav>
+                <a href="#">News</a>
+                <a href="#">Opinion</a>
+                <a href="#">Transfer News</a>
+                <a href="#">Calendar</a>
+            </nav>
+        </div>
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        <div id="sidebar">
+            <h2>More content</h2>
+            {% show_links %}
+        </div>
+
+    </body>
+</html>

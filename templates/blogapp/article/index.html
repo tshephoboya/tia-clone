@@ -1,0 +1,21 @@
+{% extends 'blogapp/base.html' %}
+{% load static %}
+
+{% block title %} TIA Home Page {% endblock %}
+
+{% block content %}
+    {% if articles %}
+        <div class="grid-container">
+            {% for item  in articles %}
+                <a class="Main" href="{{ item.get_absolute_url }}">
+                    <img src="{{ item.get_picture }}" style="width: 100%"/>
+                    <p>{{ item.title }}</p>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No content</p>
+    {% endif %}    
+{% endblock %}
+
+
