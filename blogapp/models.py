@@ -44,3 +44,24 @@ class Article(models.Model):
 
     objects = models.Manager()
     active = ArticleManager()
+
+class Comment(models.Model):
+    ACTIVE_CHOICES = (
+        ('Yes', 'yes'),
+        ('No', 'no'),
+    )
+
+    article = models.ForeignKey(Article,
+                                on_delete=models.CASCADE,
+                                related_name="comments")
+    name = models.CharField(max_length=255)
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    active = models.CharField(max_length=3,
+                            choices= ACTIVE_CHOICES)
+
+    class Meta():
+        ordering = ('-created',)
+
+    def __str__(self):
+        return f"comment by {self.name} on {self.created}"

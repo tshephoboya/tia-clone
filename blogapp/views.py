@@ -8,5 +8,5 @@ def article_list(request):
 
 def article_full(request, article):
     article = get_object_or_404(Article,slug=article)
-    print(article)
-    return render(request,'blogapp/article/detail.html', {'article': article})
+    comments = article.comments.all()
+    return render(request,'blogapp/article/detail.html', {'article': article, 'comments': comments})
